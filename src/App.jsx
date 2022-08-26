@@ -4,6 +4,7 @@ import { SearchBar } from "./components/searchbar/SearchBar";
 
 function App() {
 	const [users, setUsers] = useState([]);
+	const [search, setSearch] = useState("");
 
 	const fetchData = async () => {
 		await fetch("https://jsonplaceholder.typicode.com/users")
@@ -16,10 +17,12 @@ function App() {
 
 	return (
 		<div>
-			<SearchBar />
-			{users?.map((user) => (
-				<p key={user.id}>{user.name}</p>
-			))}
+			<SearchBar onChange={(e) => setSearch(e.target.value)} />
+			{users
+				?.filter((user) => user.name.toLowerCase().includes(search.toLowerCase()))
+				.map((user) => (
+					<p key={user.id}>{user.name}</p>
+				))}
 		</div>
 	);
 }
