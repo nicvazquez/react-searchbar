@@ -6,7 +6,7 @@ export const SearchBar = ({ onChange }) => {
 		<input
 			className={styles.searchbar}
 			placeholder="Search for an user"
-			type="text"
+			type="search"
 			onChange={onChange}
 		/>
 	);
